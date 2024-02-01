@@ -49,6 +49,24 @@ const resolvers = {
         game(parent){
             return db.games.find((game) => game.id === parent.game_id);
         }
+    },
+    Mutation:{
+        deleteGame(_,args){
+
+            db.games = db.games.filter((game) => game.id !== args.id);
+            return db.games;
+        },
+        addGame(_,args){
+            
+            let newGame = {
+                id: Math.floor(Math.random()*10000).toString(),
+                platform: args.platform,
+                title: args.title
+            }
+
+            db.games.push(newGame);
+            return newGame;
+        }
     }
 }
 // We define resolver functions and rest of the work will be done by the Apollo server 
