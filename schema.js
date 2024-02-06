@@ -29,10 +29,15 @@ export const typeDefs = `#graphql
     }
     type Mutation{
         deleteGame(id : ID!):[Game]
-        addGame(game:GameInput):Game        #Will be expecting game as an arguement which has a type GameInput. This arguement is required in order to create add a game
+        addGame(game:GameInput!):Game        #Will be expecting game as an arguement which has a type GameInput. This arguement is required in order to create add a game
+        updateGame(id:ID!, edits:EditGameInput!):Game
     }
     input GameInput{
         title: String!,
         platform:[String!]!
+    }
+    input EditGameInput{
+        title:String,
+        platform:[String!]          # not marking these 2 fields as required
     }
 `
