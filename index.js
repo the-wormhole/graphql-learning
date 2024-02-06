@@ -58,12 +58,16 @@ const resolvers = {
         },
         addGame(_,args){
             
-            let newGame = {
-                id: Math.floor(Math.random()*10000).toString(),
-                platform: args.platform,
-                title: args.title
-            }
+            // let newGame = {
+            //     id: Math.floor(Math.random()*10000).toString(),
+            //     platform: args.platform,
+            //     title: args.title
+            // }
 
+            let newGame = {
+                ...args.game,
+                id: Math.floor(Math.random()*10000).toString()
+            }
             db.games.push(newGame);
             return newGame;
         }
